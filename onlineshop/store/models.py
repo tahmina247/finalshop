@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import MaxValueValidator, MinValueValidator
 from phonenumber_field.modelfields import PhoneNumberField
 
+
 class UserProfile(AbstractUser):
     age = models.PositiveSmallIntegerField(default=0 , null=True, blank=True,
                                            validators=[MinValueValidator(15), MaxValueValidator(120)])

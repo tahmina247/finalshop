@@ -5,6 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .filters import ProductFilter
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.response import Response
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 from .permissions import CheckOwner
@@ -28,7 +29,7 @@ class CustomLoginView(TokenObtainPairView):
         try:
             serializer.is_valid(raise_exception=True)
         except Exception:
-            return Response({'detail':' неверные учетные данные'}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'detail':'неверные учетные данные'}, status=status.HTTP_401_UNAUTHORIZED)
         user = serializer.validated_data
         return Response(serializer.data, status=status.HTTP_200_OK)
 
